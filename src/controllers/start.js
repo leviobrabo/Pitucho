@@ -1,4 +1,9 @@
 function startCommand(bot, message) {
+if (message.chat.type !== 'private') {
+    return;
+  }
+  
+  
   const firstName = message.from.first_name;
 
   const text = `Olá, <b>${firstName}</b>!\n\nEu sou o <b>Pitucho</b>. Sou um bot para animar seu dia e grupo, consigo advinha seus sentimentos, time, presidente e ator preferido...\n\nSinta-se à vontade para me adicionar a seus grupos.`;
@@ -129,6 +134,9 @@ function startCommand(bot, message) {
 
   
   function helpCommand(bot, message) {
+  if (message.chat.type !== 'private') {
+    return;
+  }
     const text = 'Sou um bot com muitas funções interessante e divertidas.\n\nAqui estão todas as informações para te ajudar a usar o bot. <b>Basta clicar em uma delas.</b>';
     const options = {
       parse_mode: 'HTML',
