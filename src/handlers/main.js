@@ -324,43 +324,6 @@ bot.on('left_chat_member', async (msg) => {
   });
   
 
-async function saveUserToDB(msg) {
-  const existingUser = await UserModel.findOne({ user_id: msg.from.id });
-  if (existingUser) {
-    return;
-  }
-
-  const user = new UserModel({
-    user_id: msg.from.id,
-    username: msg.from.username,
-    firstname: msg.from.first_name,
-    lastname: msg.from.last_name,
-  });
-
-  try {
-    await user.save();
-    console.log(`Usuário ${msg.from.id} salvo no banco de dados.`);
-
-    const message = `#Pitucho #New_User
-        <b>User:</b> <a href="tg://user?id=${user.user_id}">${user.firstname}</a>
-        <b>ID:</b> <code>${user.user_id}</code>
-        <b>Username:</b> ${user.username ? `@${user.username}` : "Não informado"}`;
-    bot.sendMessage(groupId, message, { parse_mode: "HTML" });
-  } catch (error) {
-    console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
-  }
-}
-
-// Use the saveUserToDB function whenever a message is received
-bot.on('message', (msg) => {
-  if (msg.chat.type === 'group' || msg.chat.type === 'supergroup') {
-    saveUserToDB(msg);
-  }
-});
-
-bot.on('polling_error', (error) => {
-  console.error(error);
-});
 
 
 
