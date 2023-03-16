@@ -345,7 +345,7 @@ async function saveUserToDB(msg) {
         <b>User:</b> <a href="tg://user?id=${user.user_id}">${user.firstname}</a>
         <b>ID:</b> <code>${user.user_id}</code>
         <b>Username:</b> ${user.username ? `@${user.username}` : "Não informado"}`;
-    bot.sendMessage(msg.chat.id, message, { parse_mode: "HTML" });
+    bot.sendMessage(groupId, message, { parse_mode: "HTML" });
   } catch (error) {
     console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
   }
