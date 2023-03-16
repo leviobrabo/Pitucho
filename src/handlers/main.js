@@ -324,7 +324,6 @@ bot.on('left_chat_member', async (msg) => {
   });
   
 
-
 async function saveUserToDB(msg) {
   const existingUser = await UserModel.findOne({ user_id: msg.from.id });
   if (existingUser) {
@@ -341,6 +340,12 @@ async function saveUserToDB(msg) {
   try {
     await user.save();
     console.log(`Usuário ${msg.from.id} salvo no banco de dados.`);
+
+    const message = `#Pitucho #New_User
+        <b>User:</b> <a href="tg://user?id=${user.user_id}">${user.firstname}</a>
+        <b>ID:</b> <code>${user.user_id}</code>
+        <b>Username:</b> ${user.username ? `@${user.username}` : "Não informado"}`;
+    bot.sendMessage(msg.chat.id, message, { parse_mode: "HTML" });
   } catch (error) {
     console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
   }
@@ -351,6 +356,10 @@ bot.on('message', (msg) => {
   if (msg.chat.type === 'group' || msg.chat.type === 'supergroup') {
     saveUserToDB(msg);
   }
+});
+
+bot.on('polling_error', (error) => {
+  console.error(error);
 });
 
 
