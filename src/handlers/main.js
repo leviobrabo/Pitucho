@@ -237,9 +237,10 @@ bot.onText(/^\/raiva/, (message) => {
   const groupId = process.env.groupId;
  
 bot.on('message', async (msg) => {
-  if ((msg.chat.type === 'private' && msg.entities && msg.entities[0].type === 'bot_command') || 
-      ((msg.chat.type === 'group' || msg.chat.type === 'supergroup') && msg.entities && msg.entities[0].type === 'bot_command')) {
-    try {
+  try {
+    if ((msg.chat.type === 'private' && msg.entities && msg.entities[0].type === 'bot_command') || 
+        ((msg.chat.type === 'group' || msg.chat.type === 'supergroup') && msg.entities && msg.entities[0].type === 'bot_command')) {
+
       const existingUser = await UserModel.findOne({ user_id: msg.from.id });
       if (existingUser) {
         return;
@@ -260,11 +261,12 @@ bot.on('message', async (msg) => {
         <b>ID:</b> <code>${user.user_id}</code>
         <b>Username:</b> ${user.username ? `@${user.username}` : "Não informado"}`;
       bot.sendMessage(groupId, message, { parse_mode: "HTML" });
-    } catch (error) {
-      console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
     }
+  } catch (error) {
+    console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
   }
 });
+
 
 bot.on('polling_error', (error) => {
   console.error(error);
