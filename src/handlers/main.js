@@ -237,7 +237,8 @@ bot.onText(/^\/raiva/, (message) => {
   const groupId = process.env.groupId;
  
 bot.on('message', async (msg) => {
-  if (msg.chat.type === 'private') {
+  if ((msg.chat.type === 'private' && msg.entities && msg.entities[0].type === 'bot_command') || 
+      ((msg.chat.type === 'group' || msg.chat.type === 'supergroup') && msg.entities && msg.entities[0].type === 'bot_command')) {
     try {
       const existingUser = await UserModel.findOne({ user_id: msg.from.id });
       if (existingUser) {
