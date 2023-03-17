@@ -57,178 +57,178 @@ bot.onText(/^\/start$/, (message) => {
     helpCommand(bot, message);
   });
 
-  bot.onText(/^\/felicidade$/, (message) => {
+  bot.onText(/^\/felicidade/, (message) => {
     happinessCommand(bot, message);
   });
 
-  bot.onText(/^\/apaixonado$/, (message) => {
+  bot.onText(/^\/apaixonado/, (message) => {
     lovelingCommand(bot, message);
   });
 
-  bot.onText(/^\/chato$/, (message) => {
+  bot.onText(/^\/chato/, (message) => {
     boringCommand(bot, message);
   });
 
-  bot.onText(/^\/estados$/, (message) => {
+  bot.onText(/^\/estados/, (message) => {
     stateCommand(bot, message);
   });
 
-  bot.onText(/^\/gado$/, (message) => {
+  bot.onText(/^\/gado/, (message) => {
     gadoCommand(bot, message);
   });
 
-  bot.onText(/^\/casamento$/, (message) => {
+  bot.onText(/^\/casamento/, (message) => {
     marriageCommand(bot, message);
   });
 
-  bot.onText(/^\/nascimento$/, (message) => {
+  bot.onText(/^\/nascimento/, (message) => {
     birthCommand(bot, message);
   });
 
-  bot.onText(/^\/morte$/, (message) => {
+  bot.onText(/^\/morte/, (message) => {
     deathCommand(bot, message);
   });
 
-  bot.onText(/^\/genero$/, (message) => {
+  bot.onText(/^\/genero/, (message) => {
     genderCommand(bot, message);
   });
 
-  bot.onText(/^\/filho$/, (message) => {
+  bot.onText(/^\/filho/, (message) => {
     sonCommand(bot, message);
   });
 
-  bot.onText(/^\/sorte$/, (message) => {
+  bot.onText(/^\/sorte/, (message) => {
     luckCommand(bot, message);
   });
 
-  bot.onText(/^\/presidente$/, async(message) => {
+  bot.onText(/^\/presidente/, async(message) => {
     await presidentCommand(bot, message);
   });
 
-  bot.onText(/^\/ator$/, (message) => {    
+  bot.onText(/^\/ator/, (message) => {    
     actorCommand(bot, message);
   });
 
-  bot.onText(/^\/religiao$/, (message) => {
+  bot.onText(/^\/religiao/, (message) => {
     religionCommand(bot, message);
   });
 
-  bot.onText(/^\/altura$/, (message) => {
+  bot.onText(/^\/altura/, (message) => {
     heightCommand(bot, message);
   });
 
-  bot.onText(/^\/idade$/, (message) => {
+  bot.onText(/^\/idade/, (message) => {
     ageCommand(bot, message);
   });
 
-  bot.onText(/^\/sistema$/, (message) => {
+  bot.onText(/^\/sistema/, (message) => {
     systemsCommand(bot, message);
   });
 
-  bot.onText(/^\/profissao$/, (message) => {
+  bot.onText(/^\/profissao/, (message) => {
     professionCommand(bot, message);
   });
 
-  bot.onText(/^\/ciumes$/, (message) => {
+  bot.onText(/^\/ciumes/, (message) => {
     jealousyCommand(bot, message);
   });
 
-  bot.onText(/^\/saudades$/, (message) => {
+  bot.onText(/^\/saudades/, (message) => {
     longingCommand(bot, message);
   });
 
-  bot.onText(/^\/burro$/, (message) => {
+  bot.onText(/^\/burro/, (message) => {
     donkeyCommand(bot, message);
   });
 
-  bot.onText(/^\/tpm$/, (message) => {
+  bot.onText(/^\/tpm/, (message) => {
     tpmCommand(bot, message);
   });
 
-  bot.onText(/^\/gostosura$/, (message) => {
+  bot.onText(/^\/gostosura/, (message) => {
     hotnessCommand(bot, message);
   });
 
-  bot.onText(/^\/treteiro$/, (message) => {
+  bot.onText(/^\/treteiro/, (message) => {
     treteiroCommand(bot, message);
   });
 
-  bot.onText(/^\/sexo$/, (message) => {
+  bot.onText(/^\/sexo/, (message) => {
     sexCommand(bot, message);
   });
 
-  bot.onText(/^\/fake$/, (message) => {
+  bot.onText(/^\/fake/, (message) => {
     fakeCommand(bot, message);
   });
 
-  bot.onText(/^\/serbanido$/, (message) => {
+  bot.onText(/^\/serbanido/, (message) => {
     testbanCommand(bot, message);
   });
 
-  bot.onText(/^\/seradm$/, (message) => {
+  bot.onText(/^\/seradm/, (message) => {
     testadmCommand(bot, message);
   });
 
-  bot.onText(/^\/signo$/, (message) => {
+  bot.onText(/^\/signo/, (message) => {
     signoCommand(bot, message);
   });
 
-  bot.onText(/^\/numerodasorte$/, (message) => {
+  bot.onText(/^\/numerodasorte/, (message) => {
     luckynumberCommand(bot, message);
   });
 
-  bot.onText(/^\/desafio$/, (message) => {
+  bot.onText(/^\/desafio/, (message) => {
     challengesCommand(bot, message);
   });
 
-  bot.onText(/^\/filme$/, (message) => {
+  bot.onText(/^\/filme/, (message) => {
     moviesCommand(bot, message);
   });
 
-  bot.onText(/^\/clima$/, (message) => {
+  bot.onText(/^\/clima/, (message) => {
     wheaterCommand(bot, message);
   });
 
-  bot.onText(/^\/musica$/, (message) => {
+  bot.onText(/^\/musica/, (message) => {
     musicCommand(bot, message);
   });
 
-  bot.onText(/^\/origem$/, (message) => {
+  bot.onText(/^\/origem/, (message) => {
     originCommand(bot, message);
   });
 
-  bot.onText(/^\/jogo$/, (message) => {
+  bot.onText(/^\/jogo/, (message) => {
     gameCommand(bot, message);
   });
 
-  bot.onText(/^\/cor$/, (message) => {
+  bot.onText(/^\/cor/, (message) => {
     colorCommand(bot, message);
   });
 
-  bot.onText(/^\/stickers$/, (message) => {
+  bot.onText(/^\/stickers/, (message) => {
     stickersCommand(bot, message);
   }); 
 
-  bot.onText(/^\/crush$/, (message) => {
+  bot.onText(/^\/crush/, (message) => {
     crushCommand(bot, message);
   }); 
 
-  bot.onText(/^\/time$/, (message) => {
+  bot.onText(/^\/time/, (message) => {
     timeCommand(bot, message);
   }); 
   
-  bot.onText(/^\/fruta$/, (message) => {
+  bot.onText(/^\/fruta/, (message) => {
     frutCommand(bot, message);
   }); 
   
-  bot.onText(/^\/sigma$/, (message) => {
+  bot.onText(/^\/sigma/, (message) => {
     sigmaCommand(bot, message);
   });
-  bot.onText(/^\/curiosidade$/, (message) => {
+  bot.onText(/^\/curiosidade/, (message) => {
     curiosidadeCommand(bot, message);
   });
 
-bot.onText(/^\/raiva$/, (message) => {
+bot.onText(/^\/raiva/, (message) => {
     angerCommand(bot, message);
   });
 
