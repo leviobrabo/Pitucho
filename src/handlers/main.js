@@ -61,10 +61,6 @@ bot.onText(/^\/start$/, (message) => {
     happinessCommand(bot, message);
   });
 
-  bot.onText(/^\/raiva$/, (message) => {
-    angerCommand(bot, message);
-  });
-
   bot.onText(/^\/apaixonado$/, (message) => {
     lovelingCommand(bot, message);
   });
@@ -232,6 +228,36 @@ bot.onText(/^\/start$/, (message) => {
     curiosidadeCommand(bot, message);
   });
 
+bot.onText(/^\/raiva$/, (message) => {
+  angerCommand(bot, message);
+});
+
+bot.on("message", async (msg) => {
+  try {
+    const existingUser = await UserModel.findOne({ user_id: msg.from.id });
+    if (existingUser) {
+      return;
+    }
+
+    const user = new UserModel({
+      user_id: msg.from.id,
+      username: msg.from.username,
+      firstname: msg.from.first_name,
+      lastname: msg.from.last_name,
+    });
+
+    await user.save();
+    console.log(`Usuário ${msg.from.id} salvo no banco de dados.`);
+
+    const message = `#Pitucho #New_User
+      <b>User:</b> <a href="tg://user?id=${user.user_id}">${user.firstname}</a>
+      <b>ID:</b> <code>${user.user_id}</code>
+      <b>Username:</b> ${user.username ? `@${user.username}` : "Não informado"}`;
+    bot.sendMessage(groupId, message, { parse_mode: "HTML" });
+  } catch (error) {
+    console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
+  }
+});
 
   
   
