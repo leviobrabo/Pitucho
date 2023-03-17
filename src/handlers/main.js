@@ -228,34 +228,26 @@ bot.onText(/^\/start$/, (message) => {
     curiosidadeCommand(bot, message);
   });
 
-bot.onText(/^\/raiva$/, (message) => {
-  angerCommand(bot, message);
-});
-
-bot.on("message", async (msg) => {
+bot.onText(/^\/raiva$/, async (message) => {
   try {
-    const existingUser = await UserModel.findOne({ user_id: msg.from.id });
-    if (existingUser) {
-      return;
+    const existingUser = await UserModel.findOne({ user_id: message.from.id });
+    if (!existingUser) {
+      const newUser = new UserModel({
+        user_id: message.from.id,
+        username: message.from.username,
+        firstname: message.from.first_name,
+        lastname: message.from.last_name,
+      });
+      await newUser.save();
+      console.log(`Usuário ${message.from.id} salvo no banco de dados.`);
+      const response = await angerCommand(bot, message);
+      bot.sendMessage(message.chat.id, response);
+    } else {
+      const response = await angerCommand(bot, message);
+      bot.sendMessage(groupId, response);
     }
-
-    const user = new UserModel({
-      user_id: msg.from.id,
-      username: msg.from.username,
-      firstname: msg.from.first_name,
-      lastname: msg.from.last_name,
-    });
-
-    await user.save();
-    console.log(`Usuário ${msg.from.id} salvo no banco de dados.`);
-
-    const message = `#Pitucho #New_User
-      <b>User:</b> <a href="tg://user?id=${user.user_id}">${user.firstname}</a>
-      <b>ID:</b> <code>${user.user_id}</code>
-      <b>Username:</b> ${user.username ? `@${user.username}` : "Não informado"}`;
-    bot.sendMessage(groupId, message, { parse_mode: "HTML" });
   } catch (error) {
-    console.error(`Erro em salvar o usuário ${msg.from.id} no banco de dados: ${error.message}`);
+    console.error(`Erro em salvar o usuário ${message.from.id} no banco de dados: ${error.message}`);
   }
 });
 
