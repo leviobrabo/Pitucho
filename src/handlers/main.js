@@ -228,28 +228,9 @@ bot.onText(/^\/start$/, (message) => {
     curiosidadeCommand(bot, message);
   });
 
-bot.onText(/^\/raiva$/, async (message) => {
-  try {
-    const existingUser = await UserModel.findOne({ user_id: message.from.id });
-    if (!existingUser) {
-      const newUser = new UserModel({
-        user_id: message.from.id,
-        username: message.from.username,
-        firstname: message.from.first_name,
-        lastname: message.from.last_name,
-      });
-      await newUser.save();
-      console.log(`Usuário ${message.from.id} salvo no banco de dados.`);
-      const response = await angerCommand(bot, message);
-      bot.sendMessage(message.chat.id, response);
-    } else {
-      const response = await angerCommand(bot, message);
-      bot.sendMessage(groupId, response);
-    }
-  } catch (error) {
-    console.error(`Erro em salvar o usuário ${message.from.id} no banco de dados: ${error.message}`);
-  }
-});
+bot.onText(/^\/raiva$/, (message) => {
+    angerCommand(bot, message);
+  });
 
   
   
