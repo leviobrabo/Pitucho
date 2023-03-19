@@ -11,7 +11,7 @@ if (message.chat.type !== 'private') {
     parse_mode: 'HTML',
     reply_markup: {
       inline_keyboard: [
-        [{ text: 'Adicione-me em seu grupo', url: 'https://t.me/zoeirasbot?startgroup=true'}],
+        [{ text: 'Adicione-me em seu grupo', url: 'https://t.me/Pitucho_bot?startgroup=true'}],
         [
           {
             text: 'Lista de Comandos',
