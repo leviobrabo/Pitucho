@@ -1,51 +1,53 @@
 function angerCommand(bot, message) {
     const nivelRaiva = Math.floor(Math.random() * 101);
-  
+
     let fraseRaiva;
     if (nivelRaiva <= 25) {
-      fraseRaiva = "Estou calmo como um monge.";
+        fraseRaiva = "Estou calmo como um monge.";
     } else if (nivelRaiva <= 40) {
-      fraseRaiva = "Não sinto raiva";
+        fraseRaiva = "Não sinto raiva";
     } else if (nivelRaiva <= 60) {
-      fraseRaiva = "Estou um pouco irritado.";
+        fraseRaiva = "Estou um pouco irritado.";
     } else if (nivelRaiva <= 80) {
-      fraseRaiva = "Estou um muito irritado.";
+        fraseRaiva = "Estou um muito irritado.";
     } else if (nivelRaiva <= 90) {
-      fraseRaiva = "Estou bastante irritado!";
+        fraseRaiva = "Estou bastante irritado!";
     } else {
-      fraseRaiva = "Eu estou prestes a explodir!!!";
+        fraseRaiva = "Eu estou prestes a explodir!!!";
     }
-  
+
     let emojiRaiva;
     if (nivelRaiva <= 25) {
-      emojiRaiva = "😌";
+        emojiRaiva = "😌";
     } else if (nivelRaiva <= 40) {
-      emojiRaiva = "😐";
+        emojiRaiva = "😐";
     } else if (nivelRaiva <= 60) {
-      emojiRaiva = "😠";
+        emojiRaiva = "😠";
     } else if (nivelRaiva <= 50) {
-      emojiRaiva = "😤";
+        emojiRaiva = "😤";
     } else if (nivelRaiva <= 75) {
-      emojiRaiva = "😡";
+        emojiRaiva = "😡";
     } else {
-      emojiRaiva = "🤬";
+        emojiRaiva = "🤬";
     }
-  
-    let graficoRaiva = '';
-    for (let i = 0; i < 10; i++) {
-      if (nivelRaiva >= i * 10) {
-        graficoRaiva += '🟧';
-      } else {
-        graficoRaiva += '⬜️';
-      }
-    }
-  
-    const respostaRaiva = `*Nível de raiva* \n\nSua raiva hoje está em ${nivelRaiva}% \n\n${fraseRaiva}${emojiRaiva}\n${graficoRaiva} *${nivelRaiva}%*`;
-  
-    bot.sendMessage(message.chat.id, respostaRaiva, {reply_to_message_id: message.message_id, parse_mode: 'Markdown' });
-  }
 
-    
-  module.exports = {
-    angerCommand
-  };
+    let graficoRaiva = "";
+    for (let i = 0; i < 10; i++) {
+        if (nivelRaiva >= i * 10) {
+            graficoRaiva += "🟧";
+        } else {
+            graficoRaiva += "⬜️";
+        }
+    }
+
+    const respostaRaiva = `*Nível de raiva* \n\nSua raiva hoje está em ${nivelRaiva}% \n\n${fraseRaiva}${emojiRaiva}\n${graficoRaiva} *${nivelRaiva}%*`;
+
+    bot.sendMessage(message.chat.id, respostaRaiva, {
+        reply_to_message_id: message.message_id,
+        parse_mode: "Markdown",
+    });
+}
+
+module.exports = {
+    angerCommand,
+};
