@@ -8,6 +8,7 @@ function startCommand(bot, message) {
     const text = `Olá, <b>${firstName}</b>!\n\nEu sou o <b>Pitucho</b>. Sou um bot para animar seu dia e grupo, consigo advinha seus sentimentos, time, presidente e ator preferido...\n\nSinta-se à vontade para me adicionar a seus grupos.\n\n📦<b>Meu código-fonte:</b> <a href="https://github.com/leviobrabo/climatologiabot">GitHub</a>`;
     const options = {
         parse_mode: "HTML",
+        disable_web_page_preview: true,
         reply_markup: {
             inline_keyboard: [
                 [
