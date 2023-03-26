@@ -103,16 +103,7 @@ function startCommand(bot, message) {
                     },
                 }
             );
-        } else if (callbackQuery.data === "back_to_start") {
-            await bot.editMessageText(text_start, {
-                parse_mode: "HTML",
-                chat_id: chatId,
-                message_id: messageId,
-                disable_web_page_preview: true,
-                reply_markup: options_start.reply_markup,
-            });
-        }
-        if (callbackQuery.data === "info") {
+        } else if (callbackQuery.data === "info") {
             await bot.editMessageText(
                 "Sou um bot com muitas funções interessante e divertidas.\n\nAqui estão todas as informações para te ajudar a usar o bot. <b>Basta clicar em uma delas.</b>",
                 {
