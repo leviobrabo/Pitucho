@@ -138,6 +138,7 @@ function startCommand(bot, message) {
                 parse_mode: "HTML",
                 chat_id: chatId,
                 message_id: messageId,
+                disable_web_page_preview: true,
                 reply_markup: options.reply_markup,
             });
         }
