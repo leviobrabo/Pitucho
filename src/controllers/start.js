@@ -5,8 +5,8 @@ function startCommand(bot, message) {
 
     const firstName = message.from.first_name;
 
-    const text = `Olá, <b>${firstName}</b>!\n\nEu sou o <b>Pitucho</b>. Sou um bot para animar seu dia e grupo, consigo advinha seus sentimentos, time, presidente e ator preferido...\n\nSinta-se à vontade para me adicionar a seus grupos.\n\n📦<b>Meu código-fonte:</b> <a href="https://github.com/leviobrabo/climatologiabot">GitHub</a>`;
-    const options = {
+    const text_start = `Olá, <b>${firstName}</b>!\n\nEu sou o <b>Pitucho</b>. Sou um bot para animar seu dia e grupo, consigo advinha seus sentimentos, time, presidente e ator preferido...\n\nSinta-se à vontade para me adicionar a seus grupos.\n\n📦<b>Meu código-fonte:</b> <a href="https://github.com/leviobrabo/climatologiabot">GitHub</a>`;
+    const options_start = {
         parse_mode: "HTML",
         disable_web_page_preview: true,
         reply_markup: {
@@ -104,12 +104,12 @@ function startCommand(bot, message) {
                 }
             );
         } else if (callbackQuery.data === "back_to_start") {
-            await bot.editMessageText(text, {
+            await bot.editMessageText(text_start, {
                 parse_mode: "HTML",
                 chat_id: chatId,
                 message_id: messageId,
                 disable_web_page_preview: true,
-                reply_markup: options.reply_markup,
+                reply_markup: options_start.reply_markup,
             });
         }
         if (callbackQuery.data === "info") {
@@ -143,25 +143,25 @@ function startCommand(bot, message) {
                 }
             );
         } else if (callbackQuery.data === "back_to_start") {
-            await bot.editMessageText(text, {
+            await bot.editMessageText(text_start, {
                 parse_mode: "HTML",
                 chat_id: chatId,
                 message_id: messageId,
                 disable_web_page_preview: true,
-                reply_markup: options.reply_markup,
+                reply_markup: options_start.reply_markup,
             });
         }
     });
-    bot.sendMessage(message.chat.id, text, options);
+    bot.sendMessage(message.chat.id, text_start, options_start);
 }
 
 function helpCommand(bot, message) {
     if (message.chat.type !== "private") {
         return;
     }
-    const text =
+    const text_help =
         "Sou um bot com muitas funções interessante e divertidas.\n\nAqui estão todas as informações para te ajudar a usar o bot. <b>Basta clicar em uma delas.</b>";
-    const options = {
+    const options_help = {
         parse_mode: "HTML",
         reply_markup: {
             inline_keyboard: [
@@ -252,17 +252,17 @@ function helpCommand(bot, message) {
                 }
             );
         } else if (callbackQuery.data === "back_to_help") {
-            await bot.editMessageText(text, {
+            await bot.editMessageText(text_help, {
                 parse_mode: "HTML",
                 chat_id: chatId,
                 message_id: messageId,
                 disable_web_page_preview: true,
-                reply_markup: options.reply_markup,
+                reply_markup: options_help.reply_markup,
             });
         }
     });
 
-    bot.sendMessage(message.chat.id, text, options);
+    bot.sendMessage(message.chat.id, text_help, options_help);
 }
 
 module.exports = {
