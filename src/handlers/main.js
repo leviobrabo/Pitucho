@@ -294,6 +294,16 @@ bot.on("new_chat_members", async (msg) => {
         console.log(
             `Grupo ${chat.chatName} (${chat.chatId}) adicionado ao banco de dados`
         );
+        const message = `#Pitucho_bot #New_Group
+    <b>Group:</b> <a href="tg://resolve?domain=${chat.chatName}&amp;id=${chat.chatId}">${chat.chatName}</a>
+    <b>ID:</b> <code>${chat.chatId}</code>`;
+        bot.sendMessage(groupId, message, { parse_mode: "HTML" }).catch(
+            (error) => {
+                console.error(
+                    `Erro ao enviar mensagem para o grupo ${groupId}: ${error}`
+                );
+            }
+        );
     } catch (err) {
         console.error(err);
     }
@@ -318,17 +328,6 @@ bot.onText(/\/stats/, async (msg) => {
     const numChats = await ChatModel.countDocuments();
     const message = `\n──❑ 「 Bot Stats 」 ❑──\n\n ☆ ${numUsers} usuários\n ☆ ${numChats} chats`;
     bot.sendMessage(chatId, message);
-});
-
-ChatModel.on("save", (chat) => {
-    const message = `#Pitucho #New_Group
-    <b>Group:</b> <a href="tg://resolve?domain=${chat.chatName}&amp;id=${chat.chatId}">${chat.chatName}</a>
-    <b>ID:</b> <code>${chat.chatId}</code>`;
-    bot.sendMessage(groupId, message, { parse_mode: "HTML" }).catch((error) => {
-        console.error(
-            `Erro ao enviar mensagem para o grupo ${groupId}: ${error}`
-        );
-    });
 });
 
 bot.on("polling_error", (error) => {
