@@ -179,9 +179,16 @@ const estados = [
 function stateCommand(bot, message) {
     const estadoAleatorio = estados[Math.floor(Math.random() * estados.length)];
     const resposta = `*Seu Estado é ${estadoAleatorio.nome}* ${estadoAleatorio.emoji} \n\n*Informações básicas:* ${estadoAleatorio.info}\n\n*Gíria típica:* "${estadoAleatorio.gria}" \n\n🌎 ${estadoAleatorio.frase}`;
-    bot.sendMessage(message.chat.id, resposta, {
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, resposta, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, resposta, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {
