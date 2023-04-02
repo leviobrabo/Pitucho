@@ -190,14 +190,17 @@ function professionCommand(bot, message) {
     const profissaoIndex = Math.floor(Math.random() * profissoes.length);
     const profissao = profissoes[profissaoIndex];
 
-    bot.sendMessage(
-        message.chat.id,
-        `*Sua profissão 💼* \n\n*Nome:* ${profissao.nome} ${profissao.emoji} \n*Função:* ${profissao.funcao}`,
-        {
-            parse_mode: "Markdown",
+    const respostaprofissao = `*Sua profissão 💼* \n\n*Nome:* ${profissao.nome} ${profissao.emoji} \n*Função:* ${profissao.funcao}`;
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaprofissao, {
             reply_to_message_id: message.message_id,
-        }
-    );
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaprofissao, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

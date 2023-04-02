@@ -31,10 +31,16 @@ function birthCommand(bot, message) {
 
     const respostanascimento = `*Data do seu nascimento*\n\nVocê nasceu em ${nascimento.data} ${nascimento.emoji}`;
 
-    bot.sendMessage(message.chat.id, respostanascimento, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostanascimento, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostanascimento, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 module.exports = {
     birthCommand,

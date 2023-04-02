@@ -101,10 +101,16 @@ function signoCommand(bot, message) {
     const signo = signos[Math.floor(Math.random() * signos.length)];
 
     const respostaSigno = `*Seu signo*\n\n*Nome:* ${signo.nome} ${signo.emoji} \n\n*Descrição:* ${signo.descricao} \n\n*Início:* ${signo.dataInicio} \n\n*Fim:* ${signo.dataFim}`;
-    bot.sendMessage(message.chat.id, respostaSigno, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaSigno, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaSigno, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

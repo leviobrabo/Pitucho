@@ -24,10 +24,16 @@ function testbanCommand(bot, message) {
 
     response1 += `🔄Carregando informações...🔄 \n\nResultado: Existe a probabilidade de *${probability}% de você ser Banida.👀*`;
 
-    bot.sendMessage(message.chat.id, response1, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, response1, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, response1, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 module.exports = {
     testbanCommand,

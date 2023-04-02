@@ -108,10 +108,16 @@ function escolherCuriosidade() {
 function curiosidadeCommand(bot, message) {
     const curiosidade = escolherCuriosidade();
     const mensagem = `🔍 *Você sabia?* 🔍\n\n"${curiosidade}"\n\n💡 Você sabia disso, @${message.from.username}? `;
-    bot.sendMessage(message.chat.id, mensagem, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, mensagem, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, mensagem, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

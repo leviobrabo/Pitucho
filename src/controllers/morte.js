@@ -31,12 +31,17 @@ function deathCommand(bot, message) {
 
     const respostamorte = `*Data da sua morte*\n\nVocê morrerá em ${morte.data1} ${morte.emoji2}`;
 
-    bot.sendMessage(message.chat.id, respostamorte, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostamorte, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostamorte, {
+            parse_mode: "Markdown",
+        });
+    }
 }
-
 module.exports = {
     deathCommand,
 };

@@ -24,11 +24,18 @@ const estilosMusicais = [
 async function musicCommand(bot, message) {
     const randomIndex = Math.floor(Math.random() * estilosMusicais.length);
     const estilo = estilosMusicais[randomIndex];
-    bot.sendMessage(
-        message.chat.id,
-        `*🎼Seu estilo musical🎼* \n\n*Nome:* ${estilo.nome} ${estilo.emoji}  \n\n*Característica:* ${estilo.caracteristica}`,
-        { reply_to_message_id: message.message_id, parse_mode: "Markdown" }
-    );
+
+    const respostaestilo = `*🎼Seu estilo musical🎼* \n\n*Nome:* ${estilo.nome} ${estilo.emoji}  \n\n*Característica:* ${estilo.caracteristica}`;
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaestilo, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaestilo, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

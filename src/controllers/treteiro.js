@@ -41,10 +41,16 @@ function treteiroCommand(bot, message) {
 
     const respostaTreteiro = `*Nível de treteiro(a)*\n\nO seu nível de treteiro(a) está em ${nivelTreteiro}%\n\n${fraseTreteiro}${emojiTreteiro}\n${graficoTreteiro} *${nivelTreteiro}%*`;
 
-    bot.sendMessage(message.chat.id, respostaTreteiro, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaTreteiro, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaTreteiro, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

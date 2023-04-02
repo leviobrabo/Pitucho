@@ -55,10 +55,16 @@ function moviesCommand(bot, message) {
 
     const respostaFilme = `*🎬 Sua cateogria filme preferida 🎬* \n\n*Nome:* ${categoria.descricao} ${categoria.emoji} \n\n*Descrição:* ${categoria.sobre}`;
 
-    bot.sendMessage(message.chat.id, respostaFilme, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaFilme, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaFilme, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

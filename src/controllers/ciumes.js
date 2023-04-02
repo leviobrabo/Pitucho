@@ -46,10 +46,16 @@ function jealousyCommand(bot, message) {
 
     const respostaCiumes = `*Nível de ciúmes*\n\nO seu ciúme está em ${nivelCiumes}%\n\n${fraseCiumes}${emojiCiumes}\n${graficoCiumes} *${nivelCiumes}%*`;
 
-    bot.sendMessage(message.chat.id, respostaCiumes, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaCiumes, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaCiumes, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

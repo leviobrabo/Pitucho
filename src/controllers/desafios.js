@@ -66,10 +66,16 @@ function challengesCommand(bot, message) {
 
     const mensagem = `*🏆 VOCÊ FOI DESAFIO 🏆* \n\nVocê terá que: \n\n${desafio.emoji} ${desafio.explicacao}`;
 
-    bot.sendMessage(message.chat.id, mensagem, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, mensagem, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, mensagem, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

@@ -38,10 +38,16 @@ function hotnessCommand(bot, message) {
 
     const respostaGostosura = `*Nível de gostosura*\n\nVocê é ${mensagemGostosura}${emojiGostosura}\n${graficoGostosura} *${nivelGostosura}%*`;
 
-    bot.sendMessage(message.chat.id, respostaGostosura, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaGostosura, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaGostosura, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

@@ -72,14 +72,19 @@ const frutas = [
 ];
 
 function frutCommand(bot, message) {
-    const chatId = message.chat.id;
     const fruta = frutas[Math.floor(Math.random() * frutas.length)];
     const mensagem = `Sua fruta preferida é *${fruta.nome}* ${fruta.emoji}\n\n*Benefícios:* ${fruta.beneficios}\n*Malefícios:* ${fruta.maleficios}\n*Local típico:* ${fruta.local_tipico}`;
 
-    bot.sendMessage(chatId, mensagem, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, mensagem, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, mensagem, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

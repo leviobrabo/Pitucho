@@ -103,10 +103,16 @@ function religionCommand(bot, message) {
     const religiao = religioes[Math.floor(Math.random() * religioes.length)];
     const respostaReligao = `Sua religão é *${religiao.nome} ${religiao.emoji}*\n\n*Dados:* ${religiao.descricao}\n\n*Fundador:* ${religiao.fundador}`;
 
-    bot.sendMessage(message.chat.id, respostaReligao, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaReligao, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaReligao, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

@@ -46,10 +46,16 @@ function boringCommand(bot, message) {
 
     const respostachato = `*Nível de chatice*\n\nO meu nível de chatice está em ${nivelchato}%\n\n${frasechato}${emojichato}\n${graficochato} *${nivelchato}%*`;
 
-    bot.sendMessage(message.chat.id, respostachato, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostachato, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostachato, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

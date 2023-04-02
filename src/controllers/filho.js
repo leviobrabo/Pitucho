@@ -45,10 +45,16 @@ function sonCommand(bot, message) {
 
     const respostafilho = `*🎊Parabéns, você é o(a) mais novo(a) Pai/Mãe🎊* \n\n🚼 Você terá um neném do sexo *${genero}* \n🪪 Nome dele(a) será *${nome}!* \n⏳ Ele(a) nascerá em *${dataNascimentoFormatada}.*`;
 
-    bot.sendMessage(message.chat.id, respostafilho, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostafilho, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostafilho, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

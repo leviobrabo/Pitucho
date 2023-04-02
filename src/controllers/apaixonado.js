@@ -44,10 +44,16 @@ function lovelingCommand(bot, message) {
 
     const respostaPaixao = `*Nível de paixão*\n\nO meu nível de paixão está em ${nivelPaixao}%\n\n${frasePaixao}${emojiPaixao}\n${graficoPaixao} *${nivelPaixao}%*`;
 
-    bot.sendMessage(message.chat.id, respostaPaixao, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaPaixao, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaPaixao, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

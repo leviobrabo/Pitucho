@@ -40,10 +40,16 @@ function sexCommand(bot, message) {
 
     const respostaPotencial = `*Potencial na cama*\n\nO seu potencial na cama está em ${nivelPotencial}%\n\n${frasePotencial}${emojiPotencial}\n${graficoPotencial} *${nivelPotencial}%*`;
 
-    bot.sendMessage(message.chat.id, respostaPotencial, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaPotencial, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaPotencial, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

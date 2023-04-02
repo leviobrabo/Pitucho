@@ -23,10 +23,16 @@ function genderCommand(bot, message) {
 
     const respostagenero = `O gênero sexual escolhido é *${genero.nome} ${genero.emoji}*`;
 
-    bot.sendMessage(message.chat.id, respostagenero, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostagenero, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostagenero, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 module.exports = {
     genderCommand,

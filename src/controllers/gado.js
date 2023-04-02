@@ -46,10 +46,16 @@ function gadoCommand(bot, message) {
 
     const respostaGado = `*Nível de gado*\n\nA sua gadice está em ${nivelGado}%\n\n${fraseGado}${emojiGado}\n${graficoGado} *${nivelGado}%*`;
 
-    bot.sendMessage(message.chat.id, respostaGado, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaGado, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaGado, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

@@ -310,12 +310,17 @@ function timeCommand(bot, message) {
     const estrelas = gerarEstrelas(time.brasileiroes);
     const informacoes = `Seu time do coração é o *${time.nome}* ❤️\n\n*Estádio:* ${time.estadio} \n*Ano de criação:* ${time.anoCriacao} \n*Mascote:* ${time.mascote} \n*Curiosidades:* ${time.curiosidade} \n*Brasileirões:* ${estrelas}`;
 
-    bot.sendPhoto(message.chat.id, time.imagemUrl, {
+    const photoOptions = {
         caption: informacoes,
         parse_mode: "Markdown",
-        reply_to_message_id: message.message_id,
-    });
-    console.log();
+    };
+
+    if (message.message_id) {
+        photoOptions.reply_to_message_id = message.message_id;
+    }
+
+    bot.sendPhoto(message.chat.id, time.imagemUrl, photoOptions);
+    console.log("time enviado com sucesso");
 }
 
 module.exports = {

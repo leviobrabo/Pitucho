@@ -103,14 +103,17 @@ function systemsCommand(bot, message) {
     const sistemaIndex = Math.floor(Math.random() * sistemas.length);
     const sistema = sistemas[sistemaIndex];
 
-    bot.sendMessage(
-        message.chat.id,
-        `Você é um *${sistema.codenome} ${sistema.emoji}* \n\n*Sistema:* ${sistema.nome}\n\n*Descrição:* ${sistema.descricao}`,
-        {
-            parse_mode: "Markdown",
+    const respostasistema = `Você é um *${sistema.codenome} ${sistema.emoji}* \n\n*Sistema:* ${sistema.nome}\n\n*Descrição:* ${sistema.descricao}`;
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostasistema, {
             reply_to_message_id: message.message_id,
-        }
-    );
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostasistema, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

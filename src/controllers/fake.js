@@ -25,10 +25,16 @@ function fakeCommand(bot, message) {
 
     response += `Resultado: Existe a probabilidade de *${probability}% de você ser fake.👀*`;
 
-    bot.sendMessage(message.chat.id, response, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, response, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, response, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

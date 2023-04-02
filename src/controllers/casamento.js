@@ -30,10 +30,16 @@ function marriageCommand(bot, message) {
     const casamento = selecionaCasamentoAleatorio();
     const respostacasamento = `*Data do casamento*\n\nVocê irá se casar em ${casamento.data} ${casamento.emoji} \n\n👩‍❤️‍👨 Parabéns, já sabe com quem vai ser?`;
 
-    bot.sendMessage(message.chat.id, respostacasamento, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostacasamento, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostacasamento, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

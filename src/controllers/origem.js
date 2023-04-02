@@ -100,11 +100,18 @@ const origens = [
 async function originCommand(bot, message) {
     const randomIndex = Math.floor(Math.random() * origens.length);
     const origem = origens[randomIndex];
-    bot.sendMessage(
-        message.chat.id,
-        `Sua origem é: *${origem.nome} ${origem.emoji}*`,
-        { reply_to_message_id: message.message_id, parse_mode: "Markdown" }
-    );
+
+    const respostaorigem = `Sua origem é: *${origem.nome} ${origem.emoji}*`;
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaorigem, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaorigem, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

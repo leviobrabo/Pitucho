@@ -1,5 +1,4 @@
 function colorCommand(bot, message) {
-    // Lista de cores preferidas
     const cores = [
         "🔴 Vermelho",
         "🟠 Laranja",
@@ -11,14 +10,19 @@ function colorCommand(bot, message) {
         "🖤 Preto",
     ];
 
-    // Escolhe uma cor aleatória
     const corAleatoria = cores[Math.floor(Math.random() * cores.length)];
 
-    // Envia a mensagem de resposta com a cor escolhida
-    bot.sendMessage(message.chat.id, `Sua cor preferida é ${corAleatoria}!`, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    const respostacor = `Sua cor preferida é ${corAleatoria}!`;
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostacor, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostacor, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 module.exports = {
     colorCommand,

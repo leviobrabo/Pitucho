@@ -60,7 +60,6 @@ function sigmaCommand(bot, message) {
     bot.sendAnimation(message.chat.id, gifSigma, {
         caption: `*SIGMA* 🍷🗿 \n\nSeu nível SIGMA é ${nivelSigma}% \n\n${fraseSigma}\n\n${graficoSigma} ${nivelSigma}%`,
         parse_mode: "Markdown",
-        reply_to_message_id: message.message_id, // adiciona o ID da mensagem original como parâmetro de resposta
     });
 }
 

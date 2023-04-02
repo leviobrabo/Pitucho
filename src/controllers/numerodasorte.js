@@ -25,10 +25,16 @@ async function luckynumberCommand(bot, message) {
         ""
     )} \n\nVai apostar?😎`;
 
-    bot.sendMessage(message.chat.id, mensagem, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, mensagem, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, mensagem, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

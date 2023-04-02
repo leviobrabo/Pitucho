@@ -25,11 +25,16 @@ function luckCommand(bot, message) {
         response = gifs.errado[index];
     }
 
-    bot.sendDocument(message.chat.id, response.url, {
+    const options = {
         caption: response.caption,
-        reply_to_message_id: message.message_id,
         parse_mode: "Markdown",
-    });
+    };
+
+    if (message.message_id) {
+        options.reply_to_message_id = message.message_id;
+    }
+
+    bot.sendDocument(message.chat.id, response.url, options);
 }
 
 module.exports = {

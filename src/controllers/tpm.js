@@ -46,10 +46,16 @@ function tpmCommand(bot, message) {
 
     const respostaIrritacao = `*Nível de TPM*\n\nO seu nível de TPM está em ${nivelIrritacao}%\n\n${fraseIrritacao}${emojiIrritacao}\n${graficoIrritacao} *${nivelIrritacao}%*`;
 
-    bot.sendMessage(message.chat.id, respostaIrritacao, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaIrritacao, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaIrritacao, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {

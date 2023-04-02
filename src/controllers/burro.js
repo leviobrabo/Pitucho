@@ -44,10 +44,16 @@ function donkeyCommand(bot, message) {
 
     const respostaBurro = `*Nível de burrice*\n\nO seu nível de burrice é ${nivelBurro}%\n\n${fraseBurro}${emojiBurro}\n${graficoBurro} *${nivelBurro}%*`;
 
-    bot.sendMessage(message.chat.id, respostaBurro, {
-        reply_to_message_id: message.message_id,
-        parse_mode: "Markdown",
-    });
+    if (message.message_id) {
+        bot.sendMessage(message.chat.id, respostaBurro, {
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } else {
+        bot.sendMessage(message.chat.id, respostaBurro, {
+            parse_mode: "Markdown",
+        });
+    }
 }
 
 module.exports = {
