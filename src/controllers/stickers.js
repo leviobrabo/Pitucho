@@ -21,17 +21,11 @@ const stickers = [
 
 function stickersCommand(bot, message) {
     const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
-    if (message.message_id) {
-        bot.sendSticker(message.chat.id, randomSticker, {
-            reply_to_message_id: message.message_id,
-            parse_mode: "Markdown",
-        });
-    } else {
-        bot.sendSticker(message.chat.id, randomSticker, {
-            parse_mode: "Markdown",
-        });
-    }
+    bot.sendSticker(message.chat.id, randomSticker, {
+        parse_mode: "Markdown",
+    });
 }
+
 module.exports = {
     stickersCommand,
 };
