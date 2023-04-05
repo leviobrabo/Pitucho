@@ -54,9 +54,12 @@ bot.onText(
     }
 );
 
-bot.onText(/^\/?(help|help@Pitucho_bot)$/, (message) => {
-    helpCommand(bot, message);
-});
+bot.onText(
+    /^\/?(help|help@Pitucho_bot|!help|!help@Pitucho_bot)$/,
+    (message) => {
+        helpCommand(bot, message);
+    }
+);
 
 bot.onText(
     /^\/?(felicidade|felicidade@Pitucho_bot|!felicidade|!felicidade@Pitucho_bot)$/,
@@ -65,173 +68,296 @@ bot.onText(
     }
 );
 
-bot.onText(/^\/?(raiva|raiva@Pitucho_bot)$/, (message) => {
-    angerCommand(bot, message);
-});
+bot.onText(
+    /^\/?(raiva|raiva@Pitucho_bot|!raiva|!raiva@Pitucho_bot)$/,
+    (message) => {
+        angerCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(apaixonado|apaixonado@Pitucho_bot)$/, (message) => {
-    lovelingCommand(bot, message);
-});
+bot.onText(
+    /^\/?(apaixonado|apaixonado@Pitucho_bot|!apaixonado|!apaixonado@Pitucho_bot)$/,
+    (message) => {
+        lovelingCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(chato|chato@Pitucho_bot)$/, (message) => {
-    boringCommand(bot, message);
-});
+bot.onText(
+    /^\/?(chato|chato@Pitucho_bot|!chato|!chato@Pitucho_bot)$/,
+    (message) => {
+        boringCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(estados|estados@Pitucho_bot)$/, (message) => {
-    stateCommand(bot, message);
-});
+bot.onText(
+    /^\/?(estados|estados@Pitucho_bot|!estados|!estados@Pitucho_bot)$/,
+    (message) => {
+        stateCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(gado|gado@Pitucho_bot)$/, (message) => {
-    gadoCommand(bot, message);
-});
+bot.onText(
+    /^\/?(gado|gado@Pitucho_bot|!gado|!gado@Pitucho_bot)$/,
+    (message) => {
+        gadoCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(casamento|casamento@Pitucho_bot)$/, (message) => {
-    marriageCommand(bot, message);
-});
+bot.onText(
+    /^\/?(casamento|casamento@Pitucho_bot|!casamento|!casamento@Pitucho_bot)$/,
+    (message) => {
+        marriageCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(nascimento|nascimento@Pitucho_bot)$/, (message) => {
-    birthCommand(bot, message);
-});
+bot.onText(
+    /^\/?(nascimento|nascimento@Pitucho_bot|!nascimento|!nascimento@Pitucho_bot)$/,
+    (message) => {
+        birthCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(morte|morte@Pitucho_bot)$/, (message) => {
-    deathCommand(bot, message);
-});
+bot.onText(
+    /^\/?(morte|morte@Pitucho_bot|!morte|!morte@Pitucho_bot)$/,
+    (message) => {
+        deathCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(genero|genero@Pitucho_bot)$/, (message) => {
-    genderCommand(bot, message);
-});
+bot.onText(
+    /^\/?(genero|genero@Pitucho_bot|!genero|!genero@Pitucho_bot)$/,
+    (message) => {
+        genderCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(filho|filho@Pitucho_bot)$/, (message) => {
-    sonCommand(bot, message);
-});
+bot.onText(
+    /^\/?(filho|filho@Pitucho_bot|!filho|!filho@Pitucho_bot)$/,
+    (message) => {
+        sonCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(sorte|sorte@Pitucho_bot)$/, (message) => {
-    luckCommand(bot, message);
-});
+bot.onText(
+    /^\/?(sorte|sorte@Pitucho_bot|!sorte|!sorte@Pitucho_bot)$/,
+    (message) => {
+        luckCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(presidente|presidente@Pitucho_bot)$/, (message) => {
-    presidentCommand(bot, message);
-});
+bot.onText(
+    /^\/?(presidente|presidente@Pitucho_bot|!presidente|!presidente@Pitucho_bot)$/,
+    (message) => {
+        presidentCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(ator|ator@Pitucho_bot)$/, (message) => {
-    actorCommand(bot, message);
-});
+bot.onText(
+    /^\/?(ator|ator@Pitucho_bot|!ator|!ator@Pitucho_bot)$/,
+    (message) => {
+        actorCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(religiao|religiao@Pitucho_bot)$/, (message) => {
-    religionCommand(bot, message);
-});
+bot.onText(
+    /^\/?(religiao|religiao@Pitucho_bot|!religiao|!religiao@Pitucho_bot)$/,
+    (message) => {
+        religionCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(altura|altura@Pitucho_bot)$/, (message) => {
-    heightCommand(bot, message);
-});
+bot.onText(
+    /^\/?(altura|altura@Pitucho_bot|!altura|!altura@Pitucho_bot)$/,
+    (message) => {
+        heightCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(idade|idade@Pitucho_bot)$/, (message) => {
-    ageCommand(bot, message);
-});
+bot.onText(
+    /^\/?(idade|idade@Pitucho_bot|!idade|!idade@Pitucho_bot)$/,
+    (message) => {
+        ageCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(sistema|sistema@Pitucho_bot)$/, (message) => {
-    systemsCommand(bot, message);
-});
+bot.onText(
+    /^\/?(sistema|sistema@Pitucho_bot|!sistema|!sistema@Pitucho_bot)$/,
+    (message) => {
+        systemsCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(profissao|profissao@Pitucho_bot)$/, (message) => {
-    professionCommand(bot, message);
-});
+bot.onText(
+    /^\/?(profissao|profissao@Pitucho_bot|!profissao|!profissao@Pitucho_bot)$/,
+    (message) => {
+        professionCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(ciumes|ciumes@Pitucho_bot)$/, (message) => {
-    jealousyCommand(bot, message);
-});
-bot.onText(/^\/?(saudades|saudades@Pitucho_bot)$/, (message) => {
-    longingCommand(bot, message);
-});
-bot.onText(/^\/?(burro|burro@Pitucho_bot)$/, (message) => {
-    donkeyCommand(bot, message);
-});
+bot.onText(
+    /^\/?(ciumes|ciumes@Pitucho_bot|!ciumes|!ciumes@Pitucho_bot)$/,
+    (message) => {
+        jealousyCommand(bot, message);
+    }
+);
+bot.onText(
+    /^\/?(saudades|saudades@Pitucho_bot|!saudades|!saudades@Pitucho_bot)$/,
+    (message) => {
+        longingCommand(bot, message);
+    }
+);
+bot.onText(
+    /^\/?(burro|burro@Pitucho_bot|!burro|!burro@Pitucho_bot)$/,
+    (message) => {
+        donkeyCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(tpm|tpm@Pitucho_bot)$/, (message) => {
+bot.onText(/^\/?(tpm|tpm@Pitucho_bot|!tpm|!tpm@Pitucho_bot)$/, (message) => {
     tpmCommand(bot, message);
 });
 
-bot.onText(/^\/?(gostosura|gostosura@Pitucho_bot)$/, (message) => {
-    hotnessCommand(bot, message);
-});
+bot.onText(
+    /^\/?(gostosura|gostosura@Pitucho_bot|!gostosura|!gostosura@Pitucho_bot)$/,
+    (message) => {
+        hotnessCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(treteiro|treteiro@Pitucho_bot)$/, (message) => {
-    treteiroCommand(bot, message);
-});
+bot.onText(
+    /^\/?(treteiro|treteiro@Pitucho_bot|!treteiro|!treteiro@Pitucho_bot)$/,
+    (message) => {
+        treteiroCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(sexo|sexo@Pitucho_bot)$/, (message) => {
-    sexCommand(bot, message);
-});
+bot.onText(
+    /^\/?(sexo|sexo@Pitucho_bot|!sexo|!sexo@Pitucho_bot)$/,
+    (message) => {
+        sexCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(fake|fake@Pitucho_bot)$/, (message) => {
-    fakeCommand(bot, message);
-});
+bot.onText(
+    /^\/?(fake|fake@Pitucho_bot|!fake|!fake@Pitucho_bot)$/,
+    (message) => {
+        fakeCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(serbanido|serbanido@Pitucho_bot)$/, (message) => {
-    testbanCommand(bot, message);
-});
+bot.onText(
+    /^\/?(serbanido|serbanido@Pitucho_bot|!serbanido|!serbanido@Pitucho_bot)$/,
+    (message) => {
+        testbanCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(seradm|seradm@Pitucho_bot)$/, (message) => {
-    testadmCommand(bot, message);
-});
+bot.onText(
+    /^\/?(seradm|seradm@Pitucho_bot|!seradm|!seradm@Pitucho_bot)$/,
+    (message) => {
+        testadmCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(signo|signo@Pitucho_bot)$/, (message) => {
-    signoCommand(bot, message);
-});
+bot.onText(
+    /^\/?(signo|signo@Pitucho_bot|!signo|!signo@Pitucho_bot)$/,
+    (message) => {
+        signoCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(numerodasorte|numerodasorte@Pitucho_bot)$/, (message) => {
-    luckynumberCommand(bot, message);
-});
+bot.onText(
+    /^\/?(numerodasorte|numerodasorte@Pitucho_bot|!numerodasorte|!numerodasorte@Pitucho_bot)$/,
+    (message) => {
+        luckynumberCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(desafio|desafio@Pitucho_bot)$/, (message) => {
-    challengesCommand(bot, message);
-});
+bot.onText(
+    /^\/?(desafio|desafio@Pitucho_bot|!desafio|!desafio@Pitucho_bot)$/,
+    (message) => {
+        challengesCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(filme|filme@Pitucho_bot)$/, (message) => {
-    moviesCommand(bot, message);
-});
-bot.onText(/^\/?(clima|clima@Pitucho_bot)$/, (message) => {
-    wheaterCommand(bot, message);
-});
+bot.onText(
+    /^\/?(filme|filme@Pitucho_bot|!filme|!filme@Pitucho_bot)$/,
+    (message) => {
+        moviesCommand(bot, message);
+    }
+);
+bot.onText(
+    /^\/?(clima|clima@Pitucho_bot|!clima|!clima@Pitucho_bot)$/,
+    (message) => {
+        wheaterCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(musica|musica@Pitucho_bot)$/, (message) => {
-    musicCommand(bot, message);
-});
+bot.onText(
+    /^\/?(musica|musica@Pitucho_bot|!musica|!musica@Pitucho_bot)$/,
+    (message) => {
+        musicCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(origem|origem@Pitucho_bot)$/, (message) => {
-    originCommand(bot, message);
-});
+bot.onText(
+    /^\/?(origem|origem@Pitucho_bot|!origem|!origem@Pitucho_bot)$/,
+    (message) => {
+        originCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(jogo|jogo@Pitucho_bot)$/, (message) => {
-    gameCommand(bot, message);
-});
+bot.onText(
+    /^\/?(jogo|jogo@Pitucho_bot|!jogo|!jogo@Pitucho_bot)$/,
+    (message) => {
+        gameCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(cor|cor@Pitucho_bot)$/, (message) => {
+bot.onText(/^\/?(cor|cor@Pitucho_bot|!cor|!cor@Pitucho_bot)$/, (message) => {
     colorCommand(bot, message);
 });
 
-bot.onText(/^\/?(stickers|stickers@Pitucho_bot)$/, (message) => {
-    stickersCommand(bot, message);
-});
+bot.onText(
+    /^\/?(stickers|stickers@Pitucho_bot|!stickers|!stickers@Pitucho_bot)$/,
+    (message) => {
+        stickersCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(crush|crush@Pitucho_bot)$/, (message) => {
-    crushCommand(bot, message);
-});
+bot.onText(
+    /^\/?(crush|crush@Pitucho_bot|!crush|!crush@Pitucho_bot)$/,
+    (message) => {
+        crushCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(time|time@Pitucho_bot)$/, (message) => {
-    timeCommand(bot, message);
-});
+bot.onText(
+    /^\/?(time|time@Pitucho_bot|!time|!time@Pitucho_bot)$/,
+    (message) => {
+        timeCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(fruta|fruta@Pitucho_bot)$/, (message) => {
-    frutCommand(bot, message);
-});
+bot.onText(
+    /^\/?(fruta|fruta@Pitucho_bot|!fruta|!fruta@Pitucho_bot)$/,
+    (message) => {
+        frutCommand(bot, message);
+    }
+);
 
-bot.onText(/^\/?(sigma|sigma@Pitucho_bot)$/, (message) => {
-    sigmaCommand(bot, message);
-});
-bot.onText(/^\/?(curiosidade|curiosidade@Pitucho_bot)$/, (message) => {
-    curiosidadeCommand(bot, message);
-});
+bot.onText(
+    /^\/?(sigma|sigma@Pitucho_bot|!sigma|!sigma@Pitucho_bot)$/,
+    (message) => {
+        sigmaCommand(bot, message);
+    }
+);
+bot.onText(
+    /^\/?(curiosidade|curiosidade@Pitucho_bot|!curiosidade|!curiosidade@Pitucho_bot)$/,
+    (message) => {
+        curiosigenerodeCommand(bot, message);
+    }
+);
 
 const groupId = process.env.groupId;
 
