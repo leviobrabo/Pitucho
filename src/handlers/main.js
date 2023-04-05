@@ -47,17 +47,23 @@ const { curiosidadeCommand } = require("../controllers/curiosidade");
 const { ChatModel } = require("../database");
 const { UserModel } = require("../database");
 
-bot.onText(/^\/?(start|start@Pitucho_bot)$/, (message) => {
-    startCommand(bot, message);
-});
+bot.onText(
+    /^\/?(start|start@Pitucho_bot|!start|!start@Pitucho_bot)$/,
+    (message) => {
+        startCommand(bot, message);
+    }
+);
 
 bot.onText(/^\/?(help|help@Pitucho_bot)$/, (message) => {
     helpCommand(bot, message);
 });
 
-bot.onText(/^\/?(felicidade|felicidade@Pitucho_bot)$/, (message) => {
-    happinessCommand(bot, message);
-});
+bot.onText(
+    /^\/?(felicidade|felicidade@Pitucho_bot|!felicidade|!felicidade@Pitucho_bot)$/,
+    (message) => {
+        happinessCommand(bot, message);
+    }
+);
 
 bot.onText(/^\/?(raiva|raiva@Pitucho_bot)$/, (message) => {
     angerCommand(bot, message);
