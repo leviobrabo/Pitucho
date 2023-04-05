@@ -1,14 +1,12 @@
-const gifs = {
+const stickers = {
     certo: [
         {
-            url: "https://media1.tenor.com/images/d3773429c196cf5f84431b74355b5225/tenor.gif?itemid=27624796",
-            caption: "*Parabéns, você conseguiu!*",
+            fileId: "CAACAgEAAxkBAAI5h2QtieP7zFJBVcfnrf1_9KMDlp59AAJLAwAChp9xRVK5tjL-i3fTLwQ",
         },
     ],
     errado: [
         {
-            url: "https://media.tenor.com/images/7fe52d2d9bbc27937b30761ff5dd32d0/tenor.gif",
-            caption: "*Ops, você não conseguiu. Tente novamente!*",
+            fileId: "CAACAgEAAxkBAAI5iWQtieXBc5WZT8qLGE2P0uwGH4hkAALTAwACz1FpRSowYSAHqFppLwQ",
         },
     ],
 };
@@ -18,23 +16,20 @@ function luckCommand(bot, message) {
 
     let response;
     if (randomNumber < 0.01) {
-        const index = Math.floor(Math.random() * gifs.certo.length);
-        response = gifs.certo[index];
+        const index = Math.floor(Math.random() * stickers.certo.length);
+        response = stickers.certo[index];
     } else {
-        const index = Math.floor(Math.random() * gifs.errado.length);
-        response = gifs.errado[index];
+        const index = Math.floor(Math.random() * stickers.errado.length);
+        response = stickers.errado[index];
     }
 
-    const options = {
-        caption: response.caption,
-        parse_mode: "Markdown",
-    };
+    const options = {};
 
     if (message.message_id) {
         options.reply_to_message_id = message.message_id;
     }
 
-    bot.sendDocument(message.chat.id, response.url, options);
+    bot.sendSticker(message.chat.id, response.fileId, options);
 }
 
 module.exports = {
