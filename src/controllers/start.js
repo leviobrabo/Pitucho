@@ -5,7 +5,7 @@ function startCommand(bot, message) {
 
     const firstName = message.from.first_name;
 
-    const text_start = `Olá, <b>${firstName}</b>!\n\nEu sou o <b>Pitucho</b>. Sou um bot para animar seu dia e grupo, consigo advinha seus sentimentos, time, presidente e ator preferido...\n\nSinta-se à vontade para me adicionar a seus grupos.\n\n📦<b>Meu código-fonte:</b> <a href="https://github.com/leviobrabo/climatologiabot">GitHub</a>`;
+    const text_start = `Olá, <b>${firstName}</b>!\n\nEu sou o <b>Pitucho</b>. Sou um bot para animar seu dia e grupo, consigo advinha seus sentimentos, time, presidente e ator preferido...\n\nSinta-se à vontade para me adicionar a seus grupos.\n\n📦<b>Meu código-fonte:</b> <a href="https://github.com/leviobrabo/climatologiabot">GitHub</a>\n\n<b>BTC:</b> <code>bc1qjxzlug0cwnfjrhacy9kkpdzxfj0mcxc079axtl</code>\n<b>ETH/USDT:</b> <code>0x1fbde0d2a96869299049f4f6f78fbd789d167d1b</code>``;
     const options_start = {
         parse_mode: "HTML",
         disable_web_page_preview: true,
