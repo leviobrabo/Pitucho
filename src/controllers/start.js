@@ -95,7 +95,7 @@ function startCommand(bot, message) {
                         inline_keyboard: [
                             [
                                 {
-                                    text: "Voltar",
+                                    text: "⬅️ Voltar",
                                     callback_data: "back_to_start",
                                 },
                             ],
@@ -115,17 +115,17 @@ function startCommand(bot, message) {
                         inline_keyboard: [
                             [
                                 {
-                                    text: "Projetos",
+                                    text: "🗂 Projetos",
                                     url: "https://t.me/pjtlbrabo",
                                 },
                                 {
-                                    text: "Suporte",
+                                    text: "👨‍💻 Suporte",
                                     url: "https://t.me/kylorensbot",
                                 },
                             ],
                             [
                                 {
-                                    text: "Voltar",
+                                    text: "⬅️ Voltar",
                                     callback_data: "back_to_start",
                                 },
                             ],
@@ -158,13 +158,13 @@ function helpCommand(bot, message) {
             inline_keyboard: [
                 [
                     {
-                        text: "Lista de Comandos",
+                        text: "🗃 Lista de Comandos",
                         callback_data: "commands",
                     },
                 ],
                 [
-                    { text: "Projetos", url: "https://t.me/pjtlbrabo" },
-                    { text: "Suporte", url: "https://t.me/kylorensbot" },
+                    { text: "🗂 Projetos", url: "https://t.me/pjtlbrabo" },
+                    { text: "👨‍💻 Suporte", url: "https://t.me/kylorensbot" },
                 ],
             ],
         },
@@ -234,7 +234,7 @@ function helpCommand(bot, message) {
                         inline_keyboard: [
                             [
                                 {
-                                    text: "Voltar",
+                                    text: "⬅️ Voltar",
                                     callback_data: "back_to_help",
                                 },
                             ],
