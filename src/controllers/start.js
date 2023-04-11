@@ -13,17 +13,17 @@ function startCommand(bot, message) {
             inline_keyboard: [
                 [
                     {
-                        text: "Adicione-me em seu grupo",
+                        text: "✨ Adicione-me em seu grupo",
                         url: "https://t.me/Pitucho_bot?startgroup=true",
                     },
                 ],
                 [
                     {
-                        text: "Lista de Comandos",
+                        text: "🗃 Lista de Comandos",
                         callback_data: "commands",
                     },
                     {
-                        text: "Informações",
+                        text: "❓ Informações",
                         callback_data: "info",
                     },
                 ],
