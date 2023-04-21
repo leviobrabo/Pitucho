@@ -433,7 +433,7 @@ bot.on("new_chat_members", async (msg) => {
     <b>Group:</b> <a href="tg://resolve?domain=${chat.chatName}&amp;id=${chat.chatId}">${chat.chatName}</a>
     <b>ID:</b> <code>${chat.chatId}</code>`;
 
-        bot.sendMessage(chatId, message, { parse_mode: "HTML" }).catch(
+        bot.sendMessage(groupId, message, { parse_mode: "HTML" }).catch(
             (error) => {
                 console.error(
                     `Erro ao enviar mensagem para o grupo ${chatId}: ${error}`
