@@ -1,4 +1,5 @@
 # Pitucho
+
 [pitucho_bot](https://t.me/Pitucho_bot) é um bot que possui um monte de comandos aleatórios e divertidos
 
 [![](https://img.shields.io/badge/telegram-@Pitucho_bot-1b2069)](https://t.me/Pitucho_bot)
@@ -10,10 +11,9 @@
 
 Você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
-- [Git](https://git-scm.com)
-- [Node.js](https://nodejs.org/en/)
-- [Vscode](https://code.visualstudio.com/docs/?dv=win)
-
+-   [Git](https://git-scm.com)
+-   [Node.js](https://nodejs.org/en/)
+-   [Vscode](https://code.visualstudio.com/docs/?dv=win)
 
 ### 🤖 Deploy no Heroku
 
@@ -36,17 +36,19 @@ $ npm i
 # Variáveis ambientes
 
 # Crie um arquivo com .env com qualquer editor de texto e coloque:
-TELEGRAM_API=Token do seu bot gerado no @BotFather
+TELEGRAM_API=#Token do seu bot gerado no @BotFather
 DB_STRING=#URL de conexão com o MongoDB
-groupId=ID do grupo
+groupId=#ID do grupo
+DEV_USERS=#ID_DEV // userId1,userId2,userId3
+
+
 # Execute a aplicação
 $ npm start
 
 
 ```
+
 ## Pronto, o bot já estará rodando
-
-
 
 ### Lista de comando
 
