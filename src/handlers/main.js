@@ -44,6 +44,7 @@ const { timeCommand } = require("../controllers/time");
 const { frutCommand } = require("../controllers/fruta");
 const { sigmaCommand } = require("../controllers/sigma");
 const { curiosidadeCommand } = require("../controllers/curiosidade");
+const CronJob = require("cron").CronJob;
 
 const { ChatModel } = require("../database");
 const { UserModel } = require("../database");

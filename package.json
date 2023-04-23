@@ -20,6 +20,7 @@
   "author": "leviobrabo",
   "license": "ISC",
   "dependencies": {
+    "cron": "^2.3.0",
     "dotenv": "^16.0.3",
     "mongoose": "^7.0.2",
     "node-telegram-bot-api": "^0.61.0"
