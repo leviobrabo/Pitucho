@@ -424,6 +424,13 @@ bot.on("new_chat_members", async (msg) => {
             console.log(
                 `Grupo ${chatName} (${chatId}) já existe no banco de dados`
             );
+            if (chat.is_ban) {
+                console.log(
+                    `Grupo ${chatName} (${chatId}) está banido, saindo do grupo`
+                );
+                await bot.leaveChat(chatId);
+                return;
+            }
         } else {
             const newChat = await ChatModel.create({
                 chatId,
@@ -473,14 +480,6 @@ bot.on("new_chat_members", async (msg) => {
                     },
                 }
             );
-        }
-
-        if (chat.is_ban) {
-            await bot.leaveChat(chatId);
-            console.log(
-                `Grupo ${chatName} (${chatId}) foi banido e o bot saiu do grupo.`
-            );
-            return;
         }
         const developerMembers = msg.new_chat_members.filter(
             (member) => member.is_bot === false && is_dev(member.id)
