@@ -491,18 +491,32 @@ bot.on("new_chat_members", async (msg) => {
 
 bot.on("left_chat_member", async (msg) => {
     const botUser = await bot.getMe();
-    if (msg.left_chat_member.id === botUser.id) {
-        console.log("Bot left the group!");
+    if (msg.left_chat_member.id !== botUser.id) {
+        return;
+    }
 
-        try {
-            const chatId = msg.chat.id;
-            const chat = await ChatModel.findOneAndDelete({ chatId });
+    const chatId = msg.chat.id;
+
+    try {
+        const chat = await ChatModel.findOne({ chatId });
+        if (!chat) {
             console.log(
-                `Grupo ${chat.chatName} (${chat.chatId}) removido do banco de dados`
+                `Chat com id ${chatId} não foi encontrado no banco de dados`
             );
-        } catch (err) {
-            console.error(err);
+            return;
         }
+        if (chat.is_ban) {
+            console.log(
+                `Grupo ${chat.chatName} (${chat.chatId}) não removido do banco de dados, pois está banido`
+            );
+            return;
+        }
+        await ChatModel.findOneAndDelete({ chatId });
+        console.log(
+            `Grupo ${chat.chatName} (${chat.chatId}) removido do banco de dados`
+        );
+    } catch (err) {
+        console.error(err);
     }
 });
 
