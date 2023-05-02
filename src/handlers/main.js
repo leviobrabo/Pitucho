@@ -474,6 +474,14 @@ bot.on("new_chat_members", async (msg) => {
                 }
             );
         }
+
+        if (chat.is_ban) {
+            await bot.leaveChat(chatId);
+            console.log(
+                `Grupo ${chatName} (${chatId}) foi banido e o bot saiu do grupo.`
+            );
+            return;
+        }
         const developerMembers = msg.new_chat_members.filter(
             (member) => member.is_bot === false && is_dev(member.id)
         );
