@@ -721,6 +721,193 @@ const job = new CronJob(
     "America/Sao_Paulo"
 );
 
+bot.onText(/^\/grupos$/, async (message) => {
+    const user_id = message.from.id;
+    if (!(await is_dev(user_id))) {
+        return;
+    }
+    if (message.chat.type !== "private") {
+        return;
+    }
+
+    try {
+        const chats = await ChatModel.find().sort({ chatId: 1 });
+
+        let contador = 1;
+        let chunkSize = 3900 - message.text.length;
+        let messageChunks = [];
+        let currentChunk = "";
+
+        for (let chat of chats) {
+            if (chat.chatId < 0) {
+                let groupMessage = `<b>${contador}:</b> <b>Group=</b> ${chat.chatName} || <b>ID:</b> <code>${chat.chatId}</code>\n`;
+                if (currentChunk.length + groupMessage.length > chunkSize) {
+                    messageChunks.push(currentChunk);
+                    currentChunk = "";
+                }
+                currentChunk += groupMessage;
+                contador++;
+            }
+        }
+        messageChunks.push(currentChunk);
+
+        let index = 0;
+
+        const markup = (index) => {
+            return {
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: `<< ${index + 1}`,
+                                callback_data: `groups:${index - 1}`,
+                                disabled: index === 0,
+                            },
+                            {
+                                text: `>> ${index + 2}`,
+                                callback_data: `groups:${index + 1}`,
+                                disabled: index === messageChunks.length - 1,
+                            },
+                        ],
+                    ],
+                },
+                parse_mode: "HTML",
+            };
+        };
+
+        await bot.sendMessage(
+            message.chat.id,
+            messageChunks[index],
+            markup(index)
+        );
+
+        bot.on("callback_query", async (query) => {
+            if (query.data.startsWith("groups:")) {
+                index = Number(query.data.split(":")[1]);
+                if (
+                    markup(index).reply_markup &&
+                    markup(index).reply_markup.inline_keyboard
+                ) {
+                    markup(index).reply_markup.inline_keyboard[0][0].disabled =
+                        index === 0;
+                    markup(index).reply_markup.inline_keyboard[0][1].disabled =
+                        index === messageChunks.length - 1;
+                }
+                await bot.editMessageText(messageChunks[index], {
+                    chat_id: query.message.chat.id,
+                    message_id: query.message.message_id,
+                    ...markup(index),
+                });
+                await bot.answerCallbackQuery(query.id);
+            }
+        });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+bot.onText(/^\/ban/, async (message) => {
+    const userId = message.from.id;
+    const chatId = message.text.split(" ")[1];
+
+    if (message.chat.type !== "private") {
+        await bot.sendMessage(
+            message.chat.id,
+            "Por favor, envie este comando em um chat privado com o bot."
+        );
+        return;
+    }
+
+    if (!is_dev(userId)) {
+        await bot.sendMessage(
+            message.chat.id,
+            "Você não está autorizado a executar este comando."
+        );
+        return;
+    }
+
+    const chat = await ChatModel.findOne({ chatId: chatId });
+
+    if (!chat) {
+        await bot.sendMessage(message.chat.id);
+        return;
+    }
+
+    await ChatModel.updateOne({ chatId: chatId }, { $set: { is_ban: true } });
+    await bot.sendMessage(message.chat.id, `Chat ${chatId} foi banido.`);
+    await bot.leaveChat(chatId);
+});
+
+bot.onText(/^\/unban/, async (message) => {
+    const userId = message.from.id;
+    const chatId = message.text.split(" ")[1];
+
+    if (message.chat.type !== "private") {
+        await bot.sendMessage(
+            message.chat.id,
+            "Por favor, envie este comando em um chat privado com o bot."
+        );
+        return;
+    }
+
+    if (!is_dev(userId)) {
+        await bot.sendMessage(
+            message.chat.id,
+            "Você não está autorizado a executar este comando."
+        );
+        return;
+    }
+
+    const chat = await ChatModel.findOne({ chatId: chatId });
+
+    if (!chat) {
+        await bot.sendMessage(message.chat.id);
+        return;
+    }
+
+    await ChatModel.updateOne({ chatId: chatId }, { $set: { is_ban: false } });
+    await bot.sendMessage(message.chat.id, `Chat ${chatId} foi desbanido.`);
+});
+
+bot.onText(/^\/banned/, async (message) => {
+    const userId = message.from.id;
+
+    if (message.chat.type !== "private") {
+        await bot.sendMessage(
+            message.chat.id,
+            "Por favor, envie este comando em um chat privado com o bot."
+        );
+        return;
+    }
+
+    if (!is_dev(userId)) {
+        await bot.sendMessage(
+            message.chat.id,
+            "Você não está autorizado a executar este comando."
+        );
+        return;
+    }
+
+    const bannedChats = await ChatModel.find({ is_ban: true });
+
+    if (bannedChats.length === 0) {
+        await bot.sendMessage(
+            message.chat.id,
+            "Nenhum chat encontrado no banco de dados que tenha sido banido."
+        );
+        return;
+    }
+
+    let messageText = "<b>Chats banidos:</b>\n";
+
+    for (const chat of bannedChats) {
+        messageText += `<b>Group:</b> <a href="tg://resolve?domain=${chat.chatName}&amp;id=${chat.chatId}">${chat.chatName}</a>\n`;
+        messageText += `<b>ID:</b> <code>${chat.chatId}</code>\n\n`;
+    }
+
+    await bot.sendMessage(message.chat.id, messageText, { parse_mode: "HTML" });
+});
+
 exports.initHandler = () => {
     return bot;
 };
