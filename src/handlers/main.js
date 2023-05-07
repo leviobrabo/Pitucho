@@ -716,8 +716,10 @@ async function sendStatus() {
     const m_s = end - start;
     const uptime = process.uptime();
     const uptime_formatted = timeFormatter(uptime);
+    const numUsers = await UserModel.countDocuments();
+    const numChats = await ChatModel.countDocuments();
     await bot.editMessageText(
-        `#Pituchobot #Status\n\nStatus: ON\nPing: \`${m_s}ms\`\nUptime: \`${uptime_formatted}\``,
+        `#Pituchobot #Status\n\nStatus: ON\nPing: \`${m_s}ms\`\nUptime: \`${uptime_formatted}\`\nUsers: \`${numUsers}\`\nChats: \`${numChats}\``,
         {
             chat_id: replied.chat.id,
             message_id: replied.message_id,
