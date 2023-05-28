@@ -584,6 +584,9 @@ bot.onText(/^(\/broadcast|\/bc)\b/, async (msg, match) => {
     if (!(await is_dev(user_id))) {
         return;
     }
+    if (msg.chat.type !== "private") {
+        return;
+    }
 
     const query = match.input.substring(match[0].length).trim();
     if (!query) {
