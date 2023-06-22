@@ -46,17 +46,27 @@ function tpmCommand(bot, message) {
 
     const respostaIrritacao = `*Nível de TPM*\n\nO seu nível de TPM está em ${nivelIrritacao}%\n\n${fraseIrritacao}${emojiIrritacao}\n${graficoIrritacao} *${nivelIrritacao}%*`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaIrritacao, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaIrritacao, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaIrritacao, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
+
 
 module.exports = {
     tpmCommand,

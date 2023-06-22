@@ -23,15 +23,24 @@ function genderCommand(bot, message) {
 
     const respostagenero = `O gênero sexual escolhido é *${genero.nome} ${genero.emoji}*`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostagenero, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostagenero, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostagenero, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 module.exports = {

@@ -43,16 +43,24 @@ function donkeyCommand(bot, message) {
     }
 
     const respostaBurro = `*Nível de burrice*\n\nO seu nível de burrice é ${nivelBurro}%\n\n${fraseBurro}${emojiBurro}\n${graficoBurro} *${nivelBurro}%*`;
-
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaBurro, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaBurro, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaBurro, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 

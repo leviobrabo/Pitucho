@@ -46,15 +46,24 @@ function jealousyCommand(bot, message) {
 
     const respostaCiumes = `*Nível de ciúmes*\n\nO seu ciúme está em ${nivelCiumes}%\n\n${fraseCiumes}${emojiCiumes}\n${graficoCiumes} *${nivelCiumes}%*`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaCiumes, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaCiumes, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaCiumes, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 

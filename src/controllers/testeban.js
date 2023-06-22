@@ -18,21 +18,29 @@ function testbanCommand(bot, message) {
     response1 += `*Advertência:* ${isNameBan ? "❌ falso" : "✅ verdadeiro"}\n`;
     response1 += `*Mute:* ${isPhotoBan ? "❌ falso" : "✅ verdadeiro"}\n`;
     response1 += `*Kick:* ${isUsernameBan ? "❌ falso" : "✅ verdadeiro"}\n`;
-    response1 += `*Forma de escrever:* ${
-        isTypingStyleBan ? "❌ falso" : "✅ verdadeiro"
-    }\n\n`;
+    response1 += `*Forma de escrever:* ${isTypingStyleBan ? "❌ falso" : "✅ verdadeiro"
+        }\n\n`;
 
     response1 += `🔄Carregando informações...🔄 \n\nResultado: Existe a probabilidade de *${probability}% de você ser Banida.👀*`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, response1, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, response1, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, response1, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 module.exports = {

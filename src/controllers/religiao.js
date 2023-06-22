@@ -103,15 +103,24 @@ function religionCommand(bot, message) {
     const religiao = religioes[Math.floor(Math.random() * religioes.length)];
     const respostaReligao = `Sua religão é *${religiao.nome} ${religiao.emoji}*\n\n*Dados:* ${religiao.descricao}\n\n*Fundador:* ${religiao.fundador}`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaReligao, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaReligao, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaReligao, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 

@@ -101,15 +101,24 @@ function signoCommand(bot, message) {
     const signo = signos[Math.floor(Math.random() * signos.length)];
 
     const respostaSigno = `*Seu signo*\n\n*Nome:* ${signo.nome} ${signo.emoji} \n\n*Descrição:* ${signo.descricao} \n\n*Início:* ${signo.dataInicio} \n\n*Fim:* ${signo.dataFim}`;
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaSigno, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaSigno, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaSigno, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 

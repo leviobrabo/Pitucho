@@ -31,15 +31,24 @@ function deathCommand(bot, message) {
 
     const respostamorte = `*Data da sua morte*\n\nVocê morrerá em ${morte.data1} ${morte.emoji2}`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostamorte, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostamorte, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostamorte, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 module.exports = {

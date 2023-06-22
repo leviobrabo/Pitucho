@@ -41,15 +41,24 @@ function treteiroCommand(bot, message) {
 
     const respostaTreteiro = `*Nível de treteiro(a)*\n\nO seu nível de treteiro(a) está em ${nivelTreteiro}%\n\n${fraseTreteiro}${emojiTreteiro}\n${graficoTreteiro} *${nivelTreteiro}%*`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaTreteiro, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaTreteiro, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaTreteiro, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 

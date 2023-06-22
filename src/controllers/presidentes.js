@@ -77,19 +77,31 @@ const candidatos = [
 ];
 
 async function presidentCommand(bot, message) {
-    const candidatoIndex = Math.floor(Math.random() * candidatos.length);
-    const candidato = candidatos[candidatoIndex];
+    try {
+        const candidatoIndex = Math.floor(Math.random() * candidatos.length);
+        const candidato = candidatos[candidatoIndex];
 
-    const options = {
-        caption: `Seu presidente é *${candidato.nome}* (${candidato.partido})`,
-        parse_mode: "Markdown",
-    };
+        const options = {
+            caption: `Seu presidente é *${candidato.nome}* (${candidato.partido})`,
+            parse_mode: "Markdown",
+        };
 
-    if (message && message.message_id) {
-        options.reply_to_message_id = message.message_id;
+        if (message && message.message_id) {
+            options.reply_to_message_id = message.message_id;
+        }
+
+        await bot.sendPhoto(message.chat.id, candidato.imagem, options);
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+        } else {
+            throw error; // Rejeita qualquer outro erro não esperado.
+        }
     }
-
-    await bot.sendPhoto(message.chat.id, candidato.imagem, options);
 }
 
 module.exports = {

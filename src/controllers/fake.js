@@ -16,24 +16,31 @@ function fakeCommand(bot, message) {
 
     response += `*Nome:* ${isNameFake ? "❌ falso" : "✅ verdadeiro"}\n`;
     response += `*Foto:* ${isPhotoFake ? "❌ falsa" : "✅ verdadeira"}\n`;
-    response += `*Username:* ${
-        isUsernameFake ? "❌ falso" : "✅ verdadeiro"
-    }\n`;
-    response += `*Forma de escrever:* ${
-        isTypingStyleFake ? "❌ falsa" : "✅ verdadeira"
-    }\n\n`;
+    response += `*Username:* ${isUsernameFake ? "❌ falso" : "✅ verdadeiro"
+        }\n`;
+    response += `*Forma de escrever:* ${isTypingStyleFake ? "❌ falsa" : "✅ verdadeira"
+        }\n\n`;
 
     response += `Resultado: Existe a probabilidade de *${probability}% de você ser fake.👀*`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, response, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, response, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, response, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 

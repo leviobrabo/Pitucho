@@ -26,15 +26,24 @@ function wheaterCommand(bot, message) {
     const clima = climas[randomIndex];
     const respostaclima = `*🌤Seu clima favorito🌤* \n\n*Nome:* ${clima.nome} ${clima.emoji} \n\n*Característica:* ${clima.caracteristica}`;
 
-    if (message.message_id) {
+    try {
         bot.sendMessage(message.chat.id, respostaclima, {
             reply_to_message_id: message.message_id,
             parse_mode: "Markdown",
         });
-    } else {
-        bot.sendMessage(message.chat.id, respostaclima, {
-            parse_mode: "Markdown",
-        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendMessage(message.chat.id, respostaclima, {
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
 }
 module.exports = {
