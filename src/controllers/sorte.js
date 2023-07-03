@@ -25,10 +25,6 @@ function luckCommand(bot, message) {
 
     const options = {};
 
-    if (message.message_id) {
-        options.reply_to_message_id = message.message_id;
-    }
-
     bot.sendSticker(message.chat.id, response.fileId, options);
 }
 

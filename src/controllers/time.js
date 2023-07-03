@@ -310,19 +310,30 @@ function timeCommand(bot, message) {
     const estrelas = gerarEstrelas(time.brasileiroes);
     const informacoes = `Seu time do coração é o *${time.nome}* ❤️\n\n*Estádio:* ${time.estadio} \n*Ano de criação:* ${time.anoCriacao} \n*Mascote:* ${time.mascote} \n*Curiosidades:* ${time.curiosidade} \n*Brasileirões:* ${estrelas}`;
 
-    const photoOptions = {
-        caption: informacoes,
-        parse_mode: "Markdown",
-    };
-
-    if (message.message_id) {
-        photoOptions.reply_to_message_id = message.message_id;
+    try {
+        bot.sendPhoto(message.chat.id, time.imagemUrl, {
+            caption: informacoes,
+            reply_to_message_id: message.message_id,
+            parse_mode: "Markdown",
+        });
+    } catch (error) {
+        if (
+            error.response &&
+            error.response.body &&
+            error.response.body.description === "ETELEGRAM: 400 BAD REQUEST: REPLIED MESSAGE NOT FOUND"
+        ) {
+            console.log("Mensagem de resposta não encontrada.");
+            bot.sendPhoto(message.chat.id, time.imagemUrl, {
+                caption: informacoes,
+                parse_mode: "Markdown",
+            });
+        } else {
+            throw error;
+        }
     }
-
-    bot.sendPhoto(message.chat.id, time.imagemUrl, photoOptions);
-    console.log("time enviado com sucesso");
 }
 
 module.exports = {
     timeCommand,
 };
+
